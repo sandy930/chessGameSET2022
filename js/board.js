@@ -14,7 +14,9 @@ function Board() {
         if (colIndex % 2 == 0) {
           cell = new Cell(rowIndex, colIndex, null, "white");
         }
-
+        if (colIndex % 2 != 0) {
+          cell = new Cell(rowIndex, colIndex, null, "gray");
+        }
         if (rowIndex === 1) {
           cell.piece = new Pawn(rowIndex,colIndex,true);
         }
