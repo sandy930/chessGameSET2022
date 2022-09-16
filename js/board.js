@@ -1,57 +1,105 @@
 function Board() {
   this.row = 8;
   this.col = 8;
-  this.rows=[];
-  this.cells=[];
-  this.boxes = null; // boxes has Spot items in 8x8 array 2D
-  this.board = document.getElementById("chess-board");
+  this.rows = [];
+
   this.initialize = function () {
     for (var rowIndex = 0; rowIndex < this.row; rowIndex++) {
-      const row=new Row()
-      this.rows.push(row)
-      for(var colIndex=0; colIndex<this.col; colIndex++){
-        if(rowIndex%2==0){
-          this.rows[rowIndex].classList.add('row-reverse')
+      const row = new Row();
+      this.rows.push(row);
+
+      for (var colIndex = 0; colIndex < this.col; colIndex++) {
+        let cell;
+        cell = new Cell(rowIndex, colIndex, null);
+        if (colIndex % 2 == 0) {
+          cell = new Cell(rowIndex, colIndex, null, "white");
         }
-        const cell=new Cell(rowIndex,colIndex,null,colIndex%2==0 ? 'gray' : 'white')
-        row.appendChild(cell)
-        this.cells.push(cell)
 
+        if (rowIndex === 1) {
+          cell.piece = new Pawn(rowIndex,colIndex,true);
+        }
+        if (rowIndex === 6) {
+          cell.piece = new Pawn(rowIndex,colIndex,false);
+        }
+        this.rows[rowIndex].cells.push(cell);
       }
-      this.board.appendChild(row)
+
     }
+    this.rows[0].cells[0].piece = new Rook(true);
+    // this.rows[0].cells[0].piece.designPieceElement()
 
+    this.rows[0].cells[7].piece = new Rook(true);
+    // this.rows[0].cells[7].piece.designPieceElement()
 
-    // // put white king on Spot
-    // currentBoxes[7][4].piece = new King(true);
-    // // put black king on Spot
-    // currentBoxes[0][3].piece  = new King(false);
+    // Create white rook
+    this.rows[7].cells[0].piece = new Rook(false);
+    // this.rows[7].cells[0].piece.designPieceElement()
 
-    // //put white queen on Spot
-    // currentBoxes[7][3].piece  = new Queen(true);
-    // //put black queen on Spot
-    // currentBoxes[0][4].piece  = new Queen(false);
+    this.rows[7].cells[7].piece = new Rook(false);
+    // this.rows[7].cells[7].piece.designPieceElement()
 
-    // // put white bishop on Spot
-    // currentBoxes[7][2].piece  = new Bishop(true);
-    // currentBoxes[7][5].piece  = new Bishop(true);
-    // // put black bishop on Spot
-    // currentBoxes[0][2].piece  = new Bishop(false);
-    // currentBoxes[0][5].piece  = new Bishop(false);
+    // Create black knight
+    this.rows[0].cells[1].piece = new Knight(true);
+    // this.rows[0].cells[1].piece.designPieceElement()
 
-    // //put white rook on Spot
-    // currentBoxes[7][0].piece  = new Rook(true);
-    // currentBoxes[7][7].piece  = new Rook(true);
-    // //put black rook on Spot
-    // currentBoxes[0][0].piece  = new Rook(false);
-    // currentBoxes[0][7].piece  = new Rook(false);
+    this.rows[0].cells[6].piece = new Knight(true);
+    // this.rows[0].cells[6].piece.designPieceElement()
 
-    // //put white knight on Spot
-    // currentBoxes[7][1].piece  = new Knight(true);
-    // currentBoxes[7][6].piece  = new Knight(true);
-    // //put black knight on Spot
-    // currentBoxes[0][1].piece  = new Knight(false);
-    // currentBoxes[0][6].piece = new Knight(false);
-    // this.boxes = currentBoxes;
+    // Create white knight
+    this.rows[7].cells[1].piece = new Knight(false);
+    // this.rows[7].cells[1].piece.designPieceElement()
+
+    this.rows[7].cells[6].piece = new Knight(false);
+    // this.rows[7].cells[6].piece.designPieceElement()
+
+    // Create black bishop
+    this.rows[0].cells[2].piece = new Bishop(true);
+    // this.rows[0].cells[2].piece.designPieceElement()
+
+    this.rows[0].cells[5].piece = new Bishop(true);
+    // this.rows[0].cells[5].piece.designPieceElement()
+
+    // Create white bishop
+    this.rows[7].cells[2].piece = new Bishop(false);
+    // this.rows[7].cells[2].piece.designPieceElement()
+
+    this.rows[7].cells[5].piece = new Bishop(false);
+    // this.rows[7].cells[5].piece.designPieceElement()
+
+    // Create queen
+    this.rows[0].cells[3].piece = new Queen(true);
+    // this.rows[0].cells[3].piece.designPieceElement()
+
+    this.rows[7].cells[4].piece = new Queen(false);
+    // this.rows[7].cells[3].piece.designPieceElement()
+
+    // Create king
+    this.rows[0].cells[4].piece = new King(true);
+    // this.rows[0].cells[4].piece.designPieceElement()
+
+    this.rows[7].cells[3].piece = new King(false);
+    // this.rows[7].cells[4].piece.designPieceElement()
+    return this.rows;
   };
+
+  this.renderBoard = function () {
+    const board = document.getElementById("chess-board");
+    for (var rowIndex = 0; rowIndex < this.rows.length; rowIndex++) {
+      let row = this.rows[rowIndex].renderRow(false);
+      if (rowIndex % 2 == 0) {
+        row = this.rows[rowIndex].renderRow(true);
+      }
+
+      for (var colIndex = 0; colIndex < 8; colIndex++) {
+        const cell = this.rows[rowIndex].cells[colIndex].renderCell();
+        if (this.rows[rowIndex].cells[colIndex].piece) {
+          const piece=this.rows[rowIndex].cells[colIndex].piece.renderPiece();
+          cell.appendChild(piece)
+        }
+        row.appendChild(cell);
+      }
+      board.appendChild(row);
+    }
+  };
+
 }

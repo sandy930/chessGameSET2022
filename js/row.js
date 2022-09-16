@@ -1,8 +1,8 @@
 function Row(){
+    this.cells=[]
     this.row=document.createElement("div");
-    this.renderRow=function(){
-        this.row.className = "row"
+    this.renderRow=function(rowReverse){
+        this.row.className =rowReverse ? "row-reverse":"row"
         return this.row
     }
-    return this.renderRow()
 }
