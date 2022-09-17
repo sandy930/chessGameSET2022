@@ -7,32 +7,9 @@ function Piece(isWhite, isKilled = false, name, imgUrl) {
   this.renderPiece = function () {
     this.image.className = "piece-image";
     this.image.setAttribute("src", this.imgUrl);
-    this.image.addEventListener("click", (event) => this.checkValidMove(event));
     return this.image;
   };
-  this.checkValidMove=function(event){
-    switch (this.name) {
-      case "pawn":
-        this.checkPawnMove(event)
-        break;
-      case "bishop":
-        this.checkBishopMove(event)
-         break;
-      case "king":
-        this.checkKingMove(event)
-         break;
-      case "knight":
-        this.checkKnightMove(event)
-         break;
-      case "rook":
-        this.checkRookMove(event)
-         break;
-      case "queen":
-        this.checkQueenMove(event)
-         break;
-    }
 
-  }
 }
 
 // function checkValidMove(piece,event) {
