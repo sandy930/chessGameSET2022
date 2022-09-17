@@ -9,23 +9,20 @@ function Board() {
       this.rows.push(row);
 
       for (var colIndex = 0; colIndex < this.col; colIndex++) {
-        let cell;
-        cell = new Cell(rowIndex, colIndex, null);
+        let cell = new Cell(rowIndex, colIndex, null);
         if (colIndex % 2 == 0) {
+          cell = new Cell(rowIndex, colIndex, null, "gray");
+        } else {
           cell = new Cell(rowIndex, colIndex, null, "white");
         }
-        if (colIndex % 2 != 0) {
-          cell = new Cell(rowIndex, colIndex, null, "gray");
-        }
         if (rowIndex === 1) {
-          cell.piece = new Pawn(rowIndex,colIndex,true);
+          cell.piece = new Pawn(rowIndex, colIndex, true);
         }
         if (rowIndex === 6) {
-          cell.piece = new Pawn(rowIndex,colIndex,false);
+          cell.piece = new Pawn(rowIndex, colIndex, false);
         }
         this.rows[rowIndex].cells.push(cell);
       }
-
     }
     this.rows[0].cells[0].piece = new Rook(true);
     // this.rows[0].cells[0].piece.designPieceElement()
@@ -95,13 +92,12 @@ function Board() {
       for (var colIndex = 0; colIndex < 8; colIndex++) {
         const cell = this.rows[rowIndex].cells[colIndex].renderCell();
         if (this.rows[rowIndex].cells[colIndex].piece) {
-          const piece=this.rows[rowIndex].cells[colIndex].piece.renderPiece();
-          cell.appendChild(piece)
+          const piece = this.rows[rowIndex].cells[colIndex].piece.renderPiece();
+          cell.appendChild(piece);
         }
         row.appendChild(cell);
       }
       board.appendChild(row);
     }
   };
-
 }
