@@ -3,6 +3,5 @@ function King(isWhite, isKilled = false) {
     this.checkKingMove=function(){
       console.log("piece")
     }
-
     Piece.call(this, isWhite, isKilled, PieceName.KING, kingImgUrl)
   }
