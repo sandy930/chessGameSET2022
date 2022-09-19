@@ -1,0 +1,129 @@
+@startuml
+class Game{
+currentPlayer: PlayerObject
+void initialize()
+void renderBoard()
+endGame()
+}
+
+class Board{
+row: Number
+col:Number
+rows:Row[]
+void initialize()
+void renderBoard()
+}
+
+class Row{
+cells:Cell[]
+void renderRow()
+
+}
+
+class Cell{
+piece: Piece
+  x: Number
+  y: Number
+color:String
+void renderCell()
+void checkValidMove(event)
+}
+
+class Player{
+name:String
+isPlayerTurn:Boolean
+isWhitePiece:Boolean
+}
+
+class Piece{
+x:Number,
+y:Number;
+name: String
+  imgUrl: String
+  isWhite: Boolean
+isKilled:Boolean
+void renderPiece()
+}
+class King{
+x:Number,
+y:Number;
+name: String
+  imgUrl: String
+  isWhite: Boolean
+isKilled:Boolean
+availableXDirection:[]
+availableYDirection:[]
+checkKingMove(piece)
+}
+class Bishop{
+x:Number,
+y:Number;
+name: String
+  imgUrl: String
+  isWhite: Boolean
+isKilled:Boolean
+availableXDirection:[]
+availableYDirection:[]
+checkBishopMove(piece)
+}
+class Knight{
+x:Number,
+y:Number;
+name: String
+  imgUrl: String
+  isWhite: Boolean
+isKilled:Boolean
+availableXDirection:[]
+availableYDirection:[]
+checkKnightMove(piece)
+}
+class Pawn{
+x:Number,
+y:Number;
+name: String
+  imgUrl: String
+  isWhite: Boolean
+isKilled:Boolean
+availableXDirection:[]
+availableYDirection:[]
+checkPawnMove(piece)
+}
+class Queen{
+x:Number,
+y:Number;
+name: String
+  imgUrl: String
+  isWhite: Boolean
+isKilled:Boolean
+availableXDirection:[]
+availableYDirection:[]
+checkQueenMove(piece)
+}
+class Rook{
+x:Number,
+y:Number;
+name: String
+  imgUrl: String
+  isWhite: Boolean
+isKilled:Boolean
+availableXDirection:[]
+availableYDirection:[]
+checkRookMove(piece)
+}
+
+Game -- Board
+Game -- Player
+Board -- Row
+Row -- Cell
+Cell-- Piece
+
+Piece <|-- King
+Piece <|-- Bishop
+Piece <|-- Knight
+Piece <|-- Pawn
+Piece <|-- Queen
+Piece <|-- Rook
+
+Player <|-- HumanPlayer
+
+@enduml
