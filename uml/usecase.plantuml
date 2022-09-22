@@ -1,0 +1,15 @@
+@startuml
+    left to right direction
+    rectangle ChessGame {
+        (Create game)
+        (Move piece)
+        (Kill opponent's piece)
+        (End Game)
+
+    }
+
+    :Player:-->(Create game)
+    :Player:-->(Move piece)
+    :Player:->(Kill opponent's piece)
+    :Player:->(End Game)
+@enduml
