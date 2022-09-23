@@ -1,22 +1,30 @@
-function Pawn(x,y,isWhite, isKilled = false) {
-  this.x=x;
-  this.y=y;
-  const pawnImgUrl = isWhite ? '../chess-img/pawn_white.png' : '../chess-img/pawn_black.png'
-  Piece.call(this, isWhite, isKilled, PieceName.PAWN, pawnImgUrl)
-  Board.call(this)
-  this.checkPawnMove=function(event){
-      const board=this.initialize()
-      if(this.x==1 || this.x==6){
-        board[this.x-1].cells[this.y].color="pink"
-        board[this.x-2].cells[this.y].color="pink"
-      }else{
-        board[this.x-1].cells[this.y].color="pink"
-      }
-      this.renderBoard()
-      console.log(board[this.x-1].cells[this.y])
-
+function Pawn(x, y, isWhite, isKilled = false) {
+  this.x = x;
+  this.y = y;
+  this.validMoveDirection = [];
+  const pawnImgUrl = isWhite
+    ? "../chess-img/pawn_white.png"
+    : "../chess-img/pawn_black.png";
+  Piece.call(this, isWhite, isKilled, PieceName.PAWN, pawnImgUrl);
+  Board.call(this);
+  this.checkPawnMove = function (cell) {
+    var board = this.initialize();
+    if (this.x == 1 || this.x == 6) {
+      this.validMoveDirection.push(board[this.x - 1].cells[this.y]);
+      this.validMoveDirection.push(board[this.x - 2].cells[this.y]);
+    } else {
+      this.validMoveDirection.push(board[this.x - 1].cells[this.y]);
     }
-  }
+    this.validMoveDirection.map((cell) => {
+      cell.color = "pink";
+      // cell.cell.addEventListener("click", () => cell.checkValidMove(cell,this))
+
+    });
+    this.renderBoard();
+  };
+
+
+}
 
 // test case cho pawn
 // + check firsrMove ? go 2 cell : go 1

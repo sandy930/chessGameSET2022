@@ -2,8 +2,9 @@ function Board() {
   this.row = 8;
   this.col = 8;
   this.rows = [];
-
+  const board = document.getElementById("chess-board");
   this.initialize = function () {
+    console.log("abc")
     for (let rowIndex = 0; rowIndex < this.row; rowIndex++) {
       const row = new Row();
       this.rows.push(row);
@@ -17,14 +18,14 @@ function Board() {
           } else{
             cell = new Cell(rowIndex, colIndex, null, "white");
           }
-        } 
+        }
         if (colIndex % 2 !== 0 ) {
           if(rowIndex % 2 !==0){
             cell = new Cell(rowIndex, colIndex, null, "gray");
           } else{
             cell = new Cell(rowIndex, colIndex, null, "white");
           }
-        } 
+        }
 
         if (rowIndex === 1) {
           cell.piece = new Pawn(rowIndex, colIndex, true);
@@ -93,7 +94,7 @@ function Board() {
   };
 
   this.renderBoard = function () {
-    const board = document.getElementById("chess-board");
+    board.innerHTML=""
     for (let rowIndex = 0; rowIndex < this.rows.length; rowIndex++) {
       let row = this.rows[rowIndex].renderRow(false);
       if (rowIndex % 2 == 0) {
@@ -101,7 +102,7 @@ function Board() {
       }
 
       for (var colIndex = 0; colIndex < 8; colIndex++) {
-        const cell = this.rows[rowIndex].cells[colIndex].renderCell();
+        const cell = this.rows[rowIndex].cells[colIndex].renderCell(null);
         if (this.rows[rowIndex].cells[colIndex].piece) {
           const piece = this.rows[rowIndex].cells[colIndex].piece.renderPiece();
           cell.appendChild(piece);
