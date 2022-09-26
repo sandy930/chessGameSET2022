@@ -4,7 +4,6 @@ function Board() {
   this.rows = [];
   const board = document.getElementById("chess-board");
   this.initialize = function () {
-    console.log("abc")
     for (let rowIndex = 0; rowIndex < this.row; rowIndex++) {
       const row = new Row();
       this.rows.push(row);
@@ -102,13 +101,17 @@ function Board() {
       }
 
       for (var colIndex = 0; colIndex < 8; colIndex++) {
-        const cell = this.rows[rowIndex].cells[colIndex].renderCell(null);
-        if (this.rows[rowIndex].cells[colIndex].piece) {
-          const piece = this.rows[rowIndex].cells[colIndex].piece.renderPiece();
+        let cell = this.rows[rowIndex].cells[colIndex].renderCell(null);
+        if (this.rows[rowIndex].cells[colIndex].piece!==null) {
+          let piece = this.rows[rowIndex].cells[colIndex].piece.renderPiece();
           cell.appendChild(piece);
+        }else if(cell.firstChild){
+
+          cell.firstChild.remove()
         }
         row.appendChild(cell);
       }
+
       board.appendChild(row);
     }
   };

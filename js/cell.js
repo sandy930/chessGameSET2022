@@ -4,7 +4,12 @@ function Cell(x = 0, y = 0, piece, color = "gray") {
   this.piece = piece;
   this.color = color;
   this.cell = document.createElement("div");
-  this.cell.addEventListener("click", () => this.checkValidMove(this,piece));
+  this.cell.addEventListener("click", () => {
+    if(this.piece){
+      console.log(1)
+      this.checkValidMove(this,piece)
+    }
+  });
   Board.call(this);
   this.renderCell = function (piece) {
     this.cell.style.backgroundColor = this.color;
@@ -34,13 +39,6 @@ function Cell(x = 0, y = 0, piece, color = "gray") {
           this.piece.checkQueenMove(event);
           break;
       }
-    }else{
-      console.log("abcdssss")
-      this.initialize();
-      console.log(event,piece)
-
-      this.renderBoard()
-      console.log(this,piece)
     }
   };
 }
