@@ -50,17 +50,17 @@ function Board() {
     // this.rows[7].cells[7].piece.designPieceElement()
 
     // Create black knight
-    this.rows[0].cells[1].piece = new Knight(true);
+    this.rows[0].cells[1].piece = new Knight(0,1,true);
     // this.rows[0].cells[1].piece.designPieceElement()
 
-    this.rows[0].cells[6].piece = new Knight(true);
+    this.rows[0].cells[6].piece = new Knight(0,6,true);
     // this.rows[0].cells[6].piece.designPieceElement()
 
     // Create white knight
-    this.rows[7].cells[1].piece = new Knight(false);
+    this.rows[7].cells[1].piece = new Knight(7,1,false);
     // this.rows[7].cells[1].piece.designPieceElement()
 
-    this.rows[7].cells[6].piece = new Knight(false);
+    this.rows[7].cells[6].piece = new Knight(7,6,false);
     // this.rows[7].cells[6].piece.designPieceElement()
 
     // Create black bishop

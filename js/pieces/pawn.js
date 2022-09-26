@@ -9,12 +9,17 @@ function Pawn(x, y, isWhite, isKilled = false) {
   Board.call(this);
   this.checkPawnMove = function (cell) {
     var board = this.initialize();
-    if (this.x == 1 || this.x == 6) {
+    if ( this.x == 6) {
       this.validMoveDirection.push(board[this.x - 1].cells[this.y]);
       this.validMoveDirection.push(board[this.x - 2].cells[this.y]);
+    } else if ( this.x == 1 ){
+      this.validMoveDirection.push(board[this.x + 1].cells[this.y]);
+      this.validMoveDirection.push(board[this.x + 2].cells[this.y]);
     } else {
-      this.validMoveDirection.push(board[this.x - 1].cells[this.y]);
+      // this.validMoveDirection.push(board[this.x - 1].cells[this.y]);
+      // this.validMoveDirection.push(board[this.x + 1].cells[this.y]);
     }
+    
     this.validMoveDirection.map((cell) => {
       cell.color = "pink";
       // cell.cell.addEventListener("click", () => cell.checkValidMove(cell,this))
