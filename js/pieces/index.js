@@ -3,7 +3,6 @@ function Piece(isWhite, isKilled = false, name, imgUrl) {
   this.imgUrl = imgUrl;
   this.isWhite = isWhite;
   this.isKilled = isKilled;
-  this.validMoveDirection=[]
   this.image = document.createElement("img");
   this.renderPiece = function () {
     this.image.className = "piece-image";

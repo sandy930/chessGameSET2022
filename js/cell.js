@@ -38,7 +38,6 @@ function Cell(x = 0, y = 0, piece, color = "gray") {
       console.log("abcdssss")
       this.initialize();
       console.log(event,piece)
-
       this.renderBoard()
       console.log(this,piece)
     }

@@ -1,11 +1,8 @@
-function Knight(x,y,isWhite, isKilled = false) {
-  this.x = x;
-  this.y = y;
+function Knight(isWhite, isKilled = false) {
   const knightImgUrl = isWhite ? '../chess-img/knight_white.png' : '../chess-img/knight_black.png';
   Piece.call(this, isWhite, isKilled, PieceName.KNIGHT, knightImgUrl);
   Board.call(this);
   this.checkKnightMove=function(){
-    console.log("knight");
     var board = this.initialize();
     if(this.x == 7){
       console.log('knight is true');
@@ -28,8 +25,10 @@ function Knight(x,y,isWhite, isKilled = false) {
     }
     this.validMoveDirection.map((cell) => {
       cell.color = "pink";
+     
+
     });
     this.renderBoard();
-    
+
   }
 }
